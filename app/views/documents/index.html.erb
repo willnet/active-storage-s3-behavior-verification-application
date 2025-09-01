@@ -1,0 +1,28 @@
+<h1>Documents</h1>
+
+<%= link_to 'New Document', new_document_path, class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>File</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.title %></td>
+        <td><%= document.file.filename if document.file.attached? %></td>
+        <td>
+          <%= link_to 'Show', document_path(document), class: 'btn btn-sm btn-outline-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @documents.empty? %>
+  <p>No documents uploaded yet. <%= link_to 'Upload your first document!', new_document_path %></p>
+<% end %>

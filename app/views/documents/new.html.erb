@@ -1,0 +1,29 @@
+<h1>New Document</h1>
+
+<%= form_with model: @document, local: true do |form| %>
+  <% if @document.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h4>
+      <ul>
+        <% @document.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :file, class: 'form-label' %>
+    <%= form.file_field :file, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit 'Create Document', class: 'btn btn-primary' %>
+    <%= link_to 'Back', documents_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
